@@ -1,7 +1,7 @@
 	html, body
 	{
 		height: 100%;
-		min-width: 1060px;
+		min-width: 1200px;
 	}
 	
 	body
@@ -535,13 +535,36 @@
 /* Featured                                                                      */
 /*********************************************************************************/
 
-.box
-{
-	padding: 3em 2em 2em 2em;
-	border: 1px solid rgba(0,0,0,0.1);
-	border-radius: 8px;
+	#slideshow
+	{
+		overflow: hidden;
+		padding: 1em 0em;
+		background: #79C255;
+		color: rgba(255,255,255,.8);
 		text-align: center;
-}
+	}
+
+	#slideshow .title
+	{
+		margin-bottom: 20px;
+	}
+
+	#slideshow .title .byline
+	{
+		color: rgba(255,255,255,.6);
+	}
+
+/*********************************************************************************/
+/* Featured                                                                      */
+/*********************************************************************************/
+
+	.box
+	{
+		padding: 3em 2em 2em 2em;
+		border: 1px solid rgba(0,0,0,0.1);
+		border-radius: 8px;
+		text-align: center;
+	}
 
 
 	#extra
