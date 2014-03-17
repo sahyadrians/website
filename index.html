@@ -26,6 +26,7 @@ Released   : 20140216
 
 	<script src="jscripts/check_login.js"></script>
 	<script src="jscripts/create_menu.js"></script>
+	<script src="jscripts/create_copyright.js"></script>
 
 </head>
 <body>
@@ -36,8 +37,7 @@ Released   : 20140216
 			</div>
 			<div id="menu">
 				<ul>
-					<script>create_menu(1)</script>
-					
+					<script>create_menu(1)</script>					
 					<script>
 						var x = isUserLoggedIn(1);
 						if (x) {
@@ -63,9 +63,7 @@ Released   : 20140216
 			</ul>
 		</div>
 	</div>
-	<div id="copyright" class="container">
-		<p>Copyright (c) 2014 Sahyadrians. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
-	</div>
+	<script>create_copyright()</script>
 </body>
 
 </html>
