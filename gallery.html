@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : CrossWalk 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140216
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Sahyadrians</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+	<link href="style/default.css" 	rel="stylesheet" type="text/css" media="all" />
+	<link href="style/fonts.css" 	rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+	<script src="jscripts/check_login.js"></script>
+	<script src="jscripts/create_menu.js"></script>
+	<script src="jscripts/create_copyright.js"></script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Gallery</a></h1>
+			</div>
+			<div id="menu">
+				<ul>
+					<script>create_menu(5)</script>
+					<script>
+						var x = isUserLoggedIn(1);
+						if (x) {
+							document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">My Profile</a></li>");
+							document.write("<li><a href=\"#\" accesskey=\"8\" title=\"\">Log Out</a></li>");
+						} else {
+							document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">Log In</a></li>");
+						}
+					</script>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="galleryAll" class="container">
+			<div class="imageFrames">				
+				<div class="boxGalleryA">
+					<a href="./gallery_alumni_meet.html">
+						<img src="https://lh3.googleusercontent.com/--1dZU1_4kY4/Uya-q6dVrcI/AAAAAAAAAIY/4-Vhme2h0qQ/s800/kedar_01.jpg" width="320" height="200" alt="" />
+					</a>
+					<a href="./gallery_alumni_meet.html">Sahyadrians First Alumni Meet!</a>
+				</div>
+				<div class="boxGalleryB">
+					<a href="./gallery_around_the_school.html">
+						<img src="https://lh6.googleusercontent.com/-UwflPVcbRHk/UybPxtvdQuI/AAAAAAAAAJI/NUnJPXcvXJc/s800/kinnari_04.JPG" width="320" height="200" alt=""/>
+					</a>
+					<a href="./gallery_around_the_school.html">Around The School</a>
+				</div>
+				<div class="boxGalleryC">
+					<a href="./gallery_old_2002.html">
+						<img src="https://lh5.googleusercontent.com/-5mTnW6v1IeI/UyYcR7inP6I/AAAAAAAAAF4/TER6YCAwBMY/s288/s3_2.jpg" width="320" height="200" alt="" />
+					</a>
+					<a href="./gallery_old_2002.html">Sahyadrians of Yore - Batch of 2002</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<script>create_copyright()</script>
+</body>
+
+</html>

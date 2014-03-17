@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : CrossWalk 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140216
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Sahyadrians</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+	<link href="style/default.css" 	rel="stylesheet" type="text/css" media="all" />
+	<link href="style/fonts.css" 	rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+	<script src="jscripts/check_login.js"></script>
+	<script src="jscripts/create_menu.js"></script>
+	<script src="jscripts/create_copyright.js"></script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Gallery</a></h1>
+			</div>
+			<div id="menu">
+				<ul>
+					<script>create_menu(5)</script>
+					<script>
+						var x = isUserLoggedIn(1);
+						if (x) {
+							document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">My Profile</a></li>");
+							document.write("<li><a href=\"#\" accesskey=\"8\" title=\"\">Log Out</a></li>");
+						} else {
+							document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">Log In</a></li>");
+						}
+					</script>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="slideshow">
+			<div class="title">
+				<span class="byline">The First Sahyadrians Alumni Reunion</span>
+			</div>
+			<div>
+				<embed type="application/x-shockwave-flash" src="https://photos.gstatic.com/media/slideshow.swf" width="800" height="533" flashvars="host=picasaweb.google.com&captions=1&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F116857686714701962822%2Falbumid%2F5991482496667485681%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCN-ylYmK8MKiSw%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+			</div>
+		</div>
+	</div>
+	
+	<script>create_copyright()</script>
+</body>
+
+</html>

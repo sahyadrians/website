@@ -427,6 +427,61 @@
 	}
 
 /*********************************************************************************/
+/* Gallery                                                                          */
+/*********************************************************************************/
+
+	#galleryAll
+	{
+		padding: 3em 0em 5em 0em;
+		text-align: center;
+		background: #79C255;
+	}
+	
+	#galleryAll .imageFrames
+	{
+		margin-left:auto;
+		margin-right:auto;
+		width: 1020px;
+	}
+	
+	#galleryAll .button
+	{
+		margin-top: 2em;
+		display: inline-block;
+		text-align: center;
+	}
+	
+	.boxGalleryA,
+	.boxGalleryB,
+	.boxGalleryC,
+	.boxGalleryD
+	{
+		width: 320px;
+	}
+
+	.boxGalleryA,
+	.boxGalleryB,
+	.boxGalleryC
+	{
+		float: left;
+		margin-right: 20px;
+	}
+	
+	.boxGalleryD
+	{
+		float: right;
+	}
+
+	.boxGalleryA a,
+	.boxGalleryB a,
+	.boxGalleryC a,
+	.boxGalleryD a
+	{
+		color: rgba(255,255,255,0.95);
+		font-style: italic;
+	}
+
+/*********************************************************************************/
 /* Page                                                                          */
 /*********************************************************************************/
 
@@ -596,6 +651,3 @@
 		overflow: hidden;
 		margin-bottom: 3em;
 	}
-
-
-
