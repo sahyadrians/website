@@ -1,6 +1,6 @@
 <!--
 
-function create_menu(pageIdx) {
+function create_menu(pageIdx,auth) {
 
 	if (pageIdx == 1) {
 		document.write("<li class=\"current_page_item\"><a href=\"./index.html\" accesskey=\"1\" title=\"\">Homepage</a></li>");
@@ -36,6 +36,14 @@ function create_menu(pageIdx) {
 		document.write("<li class=\"current_page_item\"><a href=\"#\" accesskey=\"6\" title=\"\">Give Back</a></li>");
 	} else {
 		document.write("<li><a href=\"#\" accesskey=\"6\" title=\"\">Give Back</a></li>");
+	}
+	
+	var x = isUserLoggedIn(auth);
+	if (x) {
+		document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">My Profile</a></li>");
+		document.write("<li><a href=\"#\" accesskey=\"8\" title=\"\">Log Out</a></li>");
+	} else {
+		document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">Log In</a></li>");
 	}
 	
 	return true;
