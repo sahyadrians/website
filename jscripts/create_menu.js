@@ -27,9 +27,9 @@ function create_menu(pageIdx,auth) {
 	}
 	
 	if (pageIdx == 5 ) {
-		document.write("<li class=\"current_page_item\"><a href=\"./gallery.html\" accesskey=\"5\" title=\"\">Gallery</a></li>");
+		document.write("<li class=\"current_page_item\"><a href=\"./gallery.php\" accesskey=\"5\" title=\"\">Gallery</a></li>");
 	} else {
-		document.write("<li><a href=\"./gallery.html\" accesskey=\"5\" title=\"\">Gallery</a></li>");
+		document.write("<li><a href=\"./gallery.php\" accesskey=\"5\" title=\"\">Gallery</a></li>");
 	}
 	
 	if (pageIdx == 6 ) {

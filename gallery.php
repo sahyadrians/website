@@ -12,9 +12,29 @@ Released   : 20140216
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+<?php 
+	include '../db_access/gallery_main.php';
+	
+	// get the required id
+	$numAlbums = 0;
+	
+	// Create connection
+	$con=mysqli_connect($host,$username,$password,$db_name);
+
+	// Check connection
+	if (mysqli_connect_errno()) {
+  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		$errorFlag = 2;				// Cannot connect to the database
+ 	}
+	else {
+		$qry    	= "SELECT * FROM gallery_main";
+		$result 	= mysqli_query($con,$qry);
+	}
+?>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Sahyadrians</title>
+	<title>Sahyadrians Gallery</title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	
@@ -43,25 +63,22 @@ Released   : 20140216
 		</div>
 		
 		<div id="galleryAll" class="container">
-			<div class="imageFrames">				
-				<div class="boxGalleryA">
-					<a href="./gallery_each.php?id=1">
-						<img src="https://lh3.googleusercontent.com/--1dZU1_4kY4/Uya-q6dVrcI/AAAAAAAAAIY/4-Vhme2h0qQ/s800/kedar_01.jpg" width="320" height="200" alt="" />
-					</a>
-					<a href="./gallery_each.php?id=1">Sahyadrians First Alumni Meet!</a>
-				</div>
-				<div class="boxGalleryB">
-					<a href="./gallery_each.php?id=2">
-						<img src="https://lh6.googleusercontent.com/-UwflPVcbRHk/UybPxtvdQuI/AAAAAAAAAJI/NUnJPXcvXJc/s800/kinnari_04.JPG" width="320" height="200" alt=""/>
-					</a>
-					<a href="./gallery_each.php?id=2">Around The School</a>
-				</div>
-				<div class="boxGalleryC">
-					<a href="./gallery_each.php?id=3">
-						<img src="https://lh5.googleusercontent.com/-5mTnW6v1IeI/UyYcR7inP6I/AAAAAAAAAF4/TER6YCAwBMY/s288/s3_2.jpg" width="320" height="200" alt="" />
-					</a>
-					<a href="./gallery_each.php?id=3">Sahyadrians of Yore - Batch of 2002</a>
-				</div>
+			<div class="imageFrames">
+				<?php
+					$ix = 1;
+					while($row = mysqli_fetch_array($result)) {
+						if 		($ix % 3 == 1) 	{ echo('<div class="boxGalleryA">'); }
+						elseif 	($ix % 3 == 2) 	{ echo('<div class="boxGalleryB">'); }
+						else					{ echo('<div class="boxGalleryC">'); }
+						echo('<a href="./gallery_each.php?id=' . $row['id'] . '">');
+						echo('<img src="' . $row['thumbnail_url'] . '" width="320" height="200" alt="" />');
+						echo('</a>');
+						echo('<a href="./gallery_each.php?id=' . $row['id'] . '">' . $row['thumbnail_name'] . '!</a>');
+						echo('</br></br></br>');
+						echo('</div>');
+						$ix++;
+					}
+				?>
 			</div>
 		</div>
 	</div>
