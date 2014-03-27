@@ -80,7 +80,7 @@
 							echo("<span class=\"byline\">" . $row['image_title'] . "</span>");
 						echo("</div>");
 						echo("<div>");
-							echo ("<embed type=\"application/x-shockwave-flash\" src=\"https://photos.gstatic.com/media/slideshow.swf\" width=\"800\" height=\"533\" flashvars=\"host=picasaweb.google.com&captions=1&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F116857686714701962822%2Falbumid%" . $row['image_albumid'] . "%3Falt%3Drss%26kind%3Dphoto%26authkey%" . $row['image_authuser'] . "%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>");
+							echo ("<embed type=\"application/x-shockwave-flash\" src=\"https://photos.gstatic.com/media/slideshow.swf\" width=\"800\" height=\"533\" flashvars=\"host=picasaweb.google.com&captions=1&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F116857686714701962822%2Falbumid%" . $row['image_albumid'] . "%3Falt%3Drss%26kind%3Dphoto%26authkey%" . $row['image_authuser'] . "%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>");
 						echo("</div>");
 					echo("</div>");
 				}
