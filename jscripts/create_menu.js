@@ -43,7 +43,7 @@ function create_menu(pageIdx,auth) {
 		document.write("<li><a href=\"./profile.php\" accesskey=\"7\" title=\"\">My Profile</a></li>");
 		document.write("<li><a href=\"#\" accesskey=\"8\" title=\"\">Log Out</a></li>");
 	} else {
-		document.write("<li><a href=\"login.php\" accesskey=\"7\" title=\"\" class=\"submodal\">Log In</a></li>");
+		document.write("<li><a href=\"#\" accesskey=\"7\" title=\"\">Log In</a></li>");
 	}
 	
 	return true;
