@@ -130,4 +130,5 @@ function signinCallback(authResult) {
 		if( authResult['error'] == 'user_signed_out' ) { window.location.reload(true); }
 	}
 }
+
 -->
