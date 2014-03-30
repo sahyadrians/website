@@ -38,7 +38,6 @@ function signinUser() {
 		}
 	});
 	if( userLoggedIn == 1 ) {
-		alert('User has already logged in');
 		console.log('User has already logged in');
 		$.ajax({
 			type: 'POST',
