@@ -61,6 +61,7 @@ function signinUser() {
 
 function signoutUser() {
 	gapi.auth.signOut();
+	window.location.reload(true);
 }
 
 function signinCallback(authResult) {
@@ -126,7 +127,6 @@ function signinCallback(authResult) {
 				console.log(e);
 			}
 		});
-		if( authResult['error'] == 'user_signed_out' ) { window.location.reload(true); }
 	}
 }
 
