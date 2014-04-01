@@ -79,8 +79,10 @@
 
 	<div id="signinButton-hack">
 		<span class="g-signin"
-			data-scope="https://www.googleapis.com/auth/plus.profile.emails.read"
+			data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"
+			data-accesstype="offline"
 			data-clientid="427000476887.apps.googleusercontent.com"
+			data-redirecturi="postmessage"
 			data-requestvisibleactions='http://schemas.google.com/AddActivity'
 			data-cookiepolicy="single_host_origin"
 			data-callback="signInCallback">

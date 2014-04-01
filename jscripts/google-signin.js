@@ -6,6 +6,8 @@ var additionalParams = {
 	'clientid'		: '427000476887.apps.googleusercontent.com',
 	'cookiepolicy' 	: 'single_host_origin',
 	'callback'		: signinCallback,
+	'redirecturi'	: 'postmessage',
+    'accesstype'	: 'offline',
 	'scope' 		: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read',
 	'requestvisibleactions' : 'http://schemas.google.com/AddActivity'
 };
@@ -75,15 +77,21 @@ function signinCallback(authResult) {
 		// Hide the sign-in button now that the user is authorized, for example:
 		document.getElementById('signinButton').setAttribute('style', 'display: none');
 		console.log('Signed in');
-
+		 
 		// Sign in and create token in session variable
 		console.log('Update token with latest value after sign-in');
 		$.ajax({
 			type: 'POST',
-			url: './pscripts/session_manager.php?token=1',
+			url: './pscripts/session_manager.php',
+			data: {
+				token: 			authResult['id_token'],
+				access_token: 	authResult['access_token'],
+				expiry: 		authResult['expires_in'],
+				code:			authResult['code']
+			},
 			async: false,
 			success: function(result) {
-				console.log('Creating session by storing tokens: ' + result);
+//				console.log('Creating session by storing tokens: ' + result);
 			},
 			error: function(e) {
 				console.log(e);

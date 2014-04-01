@@ -11,10 +11,10 @@
 
 		// Write to console
 		echo("<script>console.log('Creating menu')</script>");
-		
+
 		// Start creating the page
 		echo("<ul>");
-		
+
 		// Check if the token object has been defined
 		echo(
 			"<li" . get_menu_item_class( 1, $pageIdx ) . "><a href=\"./index.php\" accesskey=\"1\" title=\"\">Homepage</a></li>" . "\n" .
