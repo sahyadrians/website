@@ -25,7 +25,7 @@
 			"<li" . get_menu_item_class( 6, $pageIdx ) . "><a href=\"#\" accesskey=\"6\" title=\"\">Give Back</a></li>" . "\n"
 		);
 
-		if (isset($_SESSION['auth'])) {
+		if( (isset($_SESSION['auth'])) and ($_SESSION['auth']) ) {
 			echo(
 				"<li" . get_menu_item_class( 7, $pageIdx ) . "><a href=\"./profile.php\" accesskey=\"7\" title=\"\">My Profile</a></li>" . "\n" .
 				"<li><a href=\"#\" accesskey=\"8\" title=\"\" onclick=\"signoutUser();return false;\">Log Out</a></li>" . "\n"

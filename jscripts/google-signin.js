@@ -26,10 +26,35 @@ function render() {
 
 function signinUser() {
 
-	// First check if a token has already been generated
+	// First check if user has signed into Google and given Sahyadrians access
+	// (i.e. we check if a token has already been generated)
+	isToken = 0;
 	$.ajax({
 		type: 'POST',
 		url: './pscripts/session_manager.php?getTokenStatus=1',
+		async: false,
+		success: function(result) {
+			isToken = result;
+			console.log('Current user log-in status: ' + isToken);
+		},
+		error: function(e) {
+			console.log(e);
+		}
+	});
+	
+	if( isToken == 0 ) {
+		// If token is not there, we need to initiate flow to get the token
+		gapi.auth.signIn(additionalParams);
+		return;
+	}
+	
+	// We check user's status
+	// If not, we redirect user to profile page
+	console.log('User has already logged in to Google (and granted permission)');
+	userLoginStatus = 0;
+	$.ajax({
+		type: 'POST',
+		url: './pscripts/verify_user.php',
 		async: false,
 		success: function(result) {
 			userLoggedIn = result;
@@ -39,26 +64,13 @@ function signinUser() {
 			console.log(e);
 		}
 	});
-	if( userLoggedIn == 1 ) {
-		console.log('User has already logged in');
-		$.ajax({
-			type: 'POST',
-			url: './pscripts/session_manager.php?setLogin=1',
-			async: false,
-			success: function(result) {
-				userLoggedIn = result;
-				console.log('Current user log-in status: ' + userLoggedIn);
-			},
-			error: function(e) {
-				console.log(e);
-			}
-		});
-		window.location.reload(true);
-		return;
+	if( userLoginStatus == 0 ) {
+		window.location.href = './profile.php';
+		// redirect to profile.php
 	}
-	
-	// If token is not there, we need to initiate flow to get the token
-	gapi.auth.signIn(additionalParams);
+	else {
+		window.location.reload(true);
+	}
 }
 
 function signoutUser() {
@@ -100,19 +112,7 @@ function signinCallback(authResult) {
 
 		if( authResult['status']['method'] == 'PROMPT' ) {
 			console.log('Change sign-in status to 1');
-			$.ajax({
-				type: 'POST',
-				url: './pscripts/session_manager.php?setLogin=1',
-				async: false,
-				success: function(result) {
-					userLoggedIn = result;
-					console.log('Current user log-in status: ' + userLoggedIn);
-				},
-				error: function(e) {
-					console.log(e);
-				}
-			});
-			window.location.reload(true);
+			signinUser();
 		}
 	}
 	else {
