@@ -28,49 +28,35 @@ function signinUser() {
 
 	// First check if user has signed into Google and given Sahyadrians access
 	// (i.e. we check if a token has already been generated)
-	isToken = 0;
+	isToken = 1;
 	$.ajax({
 		type: 'POST',
 		url: './pscripts/session_manager.php?getTokenStatus=1',
 		async: false,
 		success: function(result) {
-			isToken = result;
-			console.log('Current user log-in status: ' + isToken);
+			obj = JSON.parse(result);
+			console.log("Token status - \n" +
+							'\tSession message: ' + obj.session_msg 	+ "\n" +
+							'\tAction message : ' + obj.msg  			+ "\n" +
+							'\tStatus         : ' + obj.status );
+			isToken = obj.status;
 		},
 		error: function(e) {
 			console.log(e);
-		}
+		},
+		data: {
+			getTokenStatus: "1",
+		},
 	});
-	
+
 	if( isToken == 0 ) {
 		// If token is not there, we need to initiate flow to get the token
 		gapi.auth.signIn(additionalParams);
 		return;
 	}
 	
-	// We check user's status
-	// If not, we redirect user to profile page
-	console.log('User has already logged in to Google (and granted permission)');
-	userLoginStatus = 0;
-	$.ajax({
-		type: 'POST',
-		url: './pscripts/verify_user.php',
-		async: false,
-		success: function(result) {
-			userLoggedIn = result;
-			console.log('Current user log-in status: ' + userLoggedIn);
-		},
-		error: function(e) {
-			console.log(e);
-		}
-	});
-	if( userLoginStatus == 0 ) {
-		window.location.href = './profile.php';
-		// redirect to profile.php
-	}
-	else {
-		window.location.reload(true);
-	}
+	// else, we check if user has registered - if yes, reload page, else make him fill profile
+	window.location.reload(true);
 }
 
 function signoutUser() {
@@ -103,13 +89,18 @@ function signinCallback(authResult) {
 			},
 			async: false,
 			success: function(result) {
-//				console.log('Creating session by storing tokens: ' + result);
+				obj = JSON.parse(result);
+				console.log("Set tokens - \n" +
+								'\tSession message: ' + obj.session_msg 	+ "\n" +
+								'\tAction message : ' + obj.msg  			+ "\n" +
+								'\tStatus         : ' + obj.status );
 			},
 			error: function(e) {
 				console.log(e);
 			}
 		});
 
+		console.log( 'Sign-in callback method: ' + authResult['status']['method'] );
 		if( authResult['status']['method'] == 'PROMPT' ) {
 			console.log('Change sign-in status to 1');
 			signinUser();
