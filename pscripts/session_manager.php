@@ -17,7 +17,13 @@
 		$_SESSION['access_token'] 	= $_POST['access_token'];
 		$_SESSION['expiry'] 		= $_POST['expiry'];
 		$_SESSION['code']			= $_POST['code'];
-		$result = $result . '"msg": "Setting session variables - token, access_token, code and expiry", ';
+
+		// Get user-information
+		$authURL = "https://www.googleapis.com/plus/v1/people/me?access_token=" . $_SESSION['access_token'];
+		$response = file_get_contents($authURL);
+		$userInfo = json_decode($response);
+		$_SESSION['userInfo'] = $userInfo;
+		$result = $result . '"msg": "Setting session variables - (token, access_token, code and expiry) and get user information", ';
 		$result	= $result . '"status": "1" ';
 	}
 	
