@@ -651,3 +651,56 @@
 		overflow: hidden;
 		margin-bottom: 3em;
 	}
+	
+	.error
+	{
+		color: #FF0000;
+	}
+
+	
+	
+
+/*********************************************************************************/
+/* Form                                                                 */
+/*********************************************************************************/
+
+	#featuredBorder
+	{
+		overflow: hidden;
+		padding: 1em 0em;
+		background: #79C255;
+		color: rgba(255,255,255,.8);
+		text-align: center;
+	}
+
+	#featuredBorder a
+	{
+		color: rgba(255,255,255,1);
+	}
+	
+	#userProfile
+	{
+		overflow: hidden;
+		padding: 3em 0em;
+/*		background: #ffffff;*/
+		background: #79C255;
+		color: rgba(255,255,255,.8);
+		text-align: left;
+		
+		background-image: url(https://lh4.googleusercontent.com/-6Zq7k-hqbWc/UybQJuLzN6I/AAAAAAAAALo/Jvu4DFkaoSw/s2000/kinnari_24.JPG);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+	
+	#userProfile a
+	{
+		color: #000000;
+	}
+	
+	#userProfile .centerBox
+	{
+		overflow: hidden;
+		margin: 0em auto;
+		width: 80%;
+	}
