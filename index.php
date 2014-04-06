@@ -25,16 +25,10 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>
 	<script src="https://apis.google.com/js/client:platform.js" type="text/javascript"></script>
-	
-	<!-- Code to check if user has signed in -->
 
 	<!-- Code with Google sign-in data -->
 	<meta name="google-signin-callback" content="signinCallback" />
 	<script type="text/javascript"	src="jscripts/google-signin.js"/>
-
-	<!-- Other scripts used for this and that -->
-	<script type="text/javascript" src="./jscripts/create_menu.js"></script>
-	<script type="text/javascript" src="./jscripts/create_copyright.js"></script>
 	
 	<!-- Ensure that functions are called asynchronously -->
 	<script>
@@ -72,7 +66,8 @@
 			</ul>
 		</div>
 	</div>
-	<script>create_copyright()</script>
+	
+	<?php include './pscripts/create_copyright.php';?>
 
 	<div id="signinButton-hack">
 		<span class="g-signin"
