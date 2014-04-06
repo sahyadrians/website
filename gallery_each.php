@@ -30,6 +30,8 @@
 		if ($row) 	{	$errorFlag = 0;	}	// All is well
 		else		{	$errorFlag = 1;	}	// Cannot find required row
 	}
+	
+	mysqli_close($con);
 ?>
 
 <head>

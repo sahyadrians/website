@@ -36,6 +36,8 @@ Released   : 20140216
 		$qry    	= "SELECT * FROM gallery_main";
 		$result 	= mysqli_query($con,$qry);
 	}
+	
+	mysqli_close($con);
 ?>
 
 <head>
