@@ -60,6 +60,7 @@ function signinUser() {
 }
 
 function signoutUser() {
+	console.log('Signing out user');
 	gapi.auth.signOut();
 	window.location.reload(true);
 }
@@ -73,7 +74,12 @@ function signinCallback(authResult) {
 	if (authResult['status']['signed_in']) {
 		// Update the app to reflect a signed in user
 		// Hide the sign-in button now that the user is authorized, for example:
-		document.getElementById('signinButton').setAttribute('style', 'display: none');
+		try {
+			document.getElementById('signinButton').setAttribute('style', 'display: none');
+		}
+		catch (err){
+			console.log("Cannot hide sign-in button. Error: " + err );	
+		}
 		console.log('Signed in');
 		 
 		// Sign in and create token in session variable
@@ -113,7 +119,12 @@ function signinCallback(authResult) {
 		//   "access_denied" - User denied access to your app
 		//   "immediate_failed" - Could not automatically log in the user
 		console.log('Sign-in state: ' + authResult['error']);
-		document.getElementById('signinButton').setAttribute('style', 'display: show');
+		try {
+			document.getElementById('signinButton').setAttribute('style', 'display: show');
+		}
+		catch (err){
+			console.log("Cannot show sign-in button. Error: " + err );	
+		}
 		// Create session by storing token in session variable
 		$.ajax({
 			type: 'POST',
