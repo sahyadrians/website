@@ -27,7 +27,7 @@ function createUserInfo() {
 		$dataAccessFlag = -1;				// Cannot connect to the database
  	}
 	else {
-		$qry    	= "SELECT * FROM $tbl_name_personalInfo WHERE gID=$gID LIMIT 1";
+		$qry    	= "SELECT * FROM $tbl_name_personalInfo WHERE gID='$gID' LIMIT 1";
 		$db_result 	= mysqli_query($con,$qry);
 		$row 		= mysqli_fetch_array($db_result);
 		if ($row) 	{	$dataAccessFlag = 2;	}	// Read from database
