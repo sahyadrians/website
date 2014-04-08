@@ -18,7 +18,7 @@ function createUserInfo() {
 	
 	// connect to the database to check if user details are already present
 	include '../db_access/user_info.php';
-	$con=mysqli_connect($host_userInfo,$username_userInfo,$password_userInfo,$db_name_personalInfo);
+	$con=mysqli_connect($host_userInfo,$username_userInfo,$password_userInfo,$db_name_userInfo);
 	
 	// Check connection - if no connection, use all blanks
 	if (mysqli_connect_errno()) {
@@ -33,18 +33,18 @@ function createUserInfo() {
 		if ($row) 	{	$dataAccessFlag = 2;	}	// Read from database
 		else		{	$dataAccessFlag = 1;	}	// Can't find user - read from Google
 	}
-	
+	// Access all data from Google
 	if( $dataAccessFlag == 1 ) {
 		$emailAddress = extractEmailAddress( $userInfo->{'emails'} );
 	
-		$result = $result . '"isUser": "' . '0'  						. '", ';
-		$result = $result . '"id":     "' . $userInfo->{'id'}  			. '", ';
-		$result = $result . '"name":   "' . $userInfo->{'displayName'} 	. '", ';
-		$result = $result . '"admNo":  "' . "" 							. '", ';
-		$result = $result . '"batch":  "' . "" 							. '", ';
-		$result = $result . '"gender": "' . $userInfo->{'gender'} 		. '", ';
-		$result = $result . '"email":  "' . $emailAddress 				. '", ';
-		$result = $result . '"phone":  "' . "" 							. '", ';
+		$result = $result . '"isUser": "' . '0'  							. '", ';
+		$result = $result . '"id":     "' . $userInfo->{'id'}  				. '", ';
+		$result = $result . '"name":   "' . $userInfo->{'displayName'} 		. '", ';
+		$result = $result . '"admNo":  "' . "" 								. '", ';
+		$result = $result . '"batch":  "' . "" 								. '", ';
+		$result = $result . '"gender": "' . $userInfo->{'gender'} 			. '", ';
+		$result = $result . '"email":  "' . $emailAddress 					. '", ';
+		$result = $result . '"phone":  "' . "" 								. '", ';
 	}
 	// Access all data from database
 	elseif( $dataAccessFlag == 2 ) {
@@ -63,4 +63,5 @@ function createUserInfo() {
 
 	return json_decode($result);
 }
+
 ?>
