@@ -13,7 +13,6 @@
 ?>
 
 <?php
-
 	$userInfo = createUserInfo();
 	
 	// Flag tells us whether to update the database or not
@@ -21,13 +20,15 @@
 
 	// This in the information we want from people
 	$gID	 = $userInfo->{'id'};
+	$isDB	 = $userInfo->{'isUser'};
 	$name    = $userInfo->{'name'};
 	$admNo   = $userInfo->{'admNo'};
 	$batch   = $userInfo->{'batch'};
 	$gender  = $userInfo->{'gender'};
 	$email   = $userInfo->{'email'};
 	$phone   = $userInfo->{'phone'};
-
+	$img	 = $userInfo->{'image'};
+	
 	//	$comment = "";
 	//	$website = $userInfo->{'url'};
 
@@ -86,13 +87,13 @@
 		}
 		
 		// Phone
-		if (empty($_POST["phone"]))	{$phoneErr = "Phone is required";}
+		if (empty($_POST["phone"]))	{$phoneErr = "Phone number is required";}
 		else {
 			$phone = test_input($_POST["phone"]);
-			// check if e-mail address syntax is valid
-//			if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$phone)) {
-//				$phoneErr = "Invalid email format"; 
-//			}
+			// check if phone address syntax is valid
+			if (!preg_match("/^[+][0-9]{1,15}$/",$phone)) {
+				$phoneErr = "Invalid phone number format. Format e.g. +919988776655"; 
+			}
 		}
 	
 		// If this comes in as a post request and no errors are there
@@ -102,22 +103,10 @@
 					$updateDB = 1;
 				}
 			else {
-				echo "no";
-				echo $gIDErr . $nameErr . $admNoErr . $emailErr . $batchErr . $genderErr . $emailErr . $phoneErr;
+//				echo "no";
+//				echo $gIDErr . $nameErr . $admNoErr . $emailErr . $batchErr . $genderErr . $emailErr . $phoneErr;
 			}
 		}
-
-//		if (empty($_POST["website"])) {$website = "";}
-//		else {
-//			$website = test_input($_POST["website"]);
-//			// check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-//			if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-//				$websiteErr = "Invalid URL"; 
-//			}
-//		}
-
-//		if (empty($_POST["comment"])) {$comment = "";}
-//		else {$comment = test_input($_POST["comment"]);}
 	}
 
 	function test_input($data) {
@@ -155,6 +144,8 @@
 	<meta name="google-signin-callback" content="signinCallback" />
 	<script type="text/javascript"	src="jscripts/google-signin.js"/>
 	
+	<!-- Code that creates AJAX uploader -->
+	
 	<!-- Ensure that functions are called asynchronously -->
 	<script>
 		(function() {
@@ -177,77 +168,116 @@
 				<?php create_menu(7) ?>
 			</div>
 		</div>
-		
+<!--		
 		<div id="featuredBorder">
 			<div class="container">
 				<a>Sahyadrian Alumni Profile</a>
 			</div>
 		</div>
-		
+-->		
 		<div id="userProfile">
 			<div class="centerBox">
-				<h2 align="center">Sahyadrians User Information</h2>
-				<p align="center"><span class="error">* required field.</span></p>
+				<h2 align="center">Sahyadrians User Information<br><br></h2>
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<table style="width:800px">
+					<table style="width:600px">
+						<tr>
+							<td valign="center" align="right">
+								<a>Display Picture:</a>
+							</td>
+							<td align="center">
+								<div id="userImg">
+									<img src="<?php echo $userInfo->{'image'} ?>" height="150">
+								</div>
+								<input type="button" id="uploader" value="Upload">
+							</td>
+						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>Name:</a>
+								<span class="error">*</span>
 							</td>
-							<td>
-								<input type="text" size="30" name="name" value="<?php echo $name;?>">
-								<span class="error">* <?php echo $nameErr;?></span>
+							<td align="center">
+								<input type="text" size="30" name="name" value="<?php echo $name;?>"><br>
+								<span class="error"><?php echo $nameErr;?></span>
 							</td>
 						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>Admission Number:</a>
+								<span class="error">*</span>
 							</td>
-							<td>
-								<input type="text" size="30" name="admNo" value="<?php echo $admNo;?>">
-								<span class="error">* <?php echo $admNoErr;?></span>
+							<td align="center">
+								<input type="text" size="30" name="admNo" value="<?php echo $admNo;?>"><br>
+								<span class="error"><?php echo $admNoErr;?></span>
 							</td>
 						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>Batch (the year you finished 10th grade):</a>
+								<span class="error">*</span>
 							</td>
-							<td>
-								<input type="text" size="30" name="batch" value="<?php echo $batch;?>">
-								<span class="error">* <?php echo $batchErr;?></span>
+							<td align="center">
+								<select name="batch">
+									<?php
+										function createOptions($yr,$yrSelect){
+											if ($yr == $yrSelect) 	{ echo '<option value="' . $yr . '" selected="selected">' . $yr . '</option>' . "\n"; }
+											else					{ echo '<option value="' . $yr . '">' . $yr . '</option>' . "\n"; }
+										}
+										createOptions(1999,$batch);
+										createOptions(2000,$batch);
+										createOptions(2001,$batch);
+										createOptions(2002,$batch);
+										createOptions(2003,$batch);
+										createOptions(2004,$batch);
+										createOptions(2005,$batch);
+										createOptions(2006,$batch);
+										createOptions(2007,$batch);
+										createOptions(2008,$batch);
+										createOptions(2009,$batch);
+										createOptions(2010,$batch);
+										createOptions(2011,$batch);
+										createOptions(2012,$batch);
+										createOptions(2013,$batch);
+										createOptions(2014,$batch);
+									?>
+								</select>
+								<span class="error"><?php echo $batchErr;?></span>
 							</td>
 						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>Gender:</a>
+								<span class="error">*</span>
 							</td>
-							<td>
+							<td align="center">
 								<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">Female
-								<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">Male
-								<span class="error">* <?php echo $genderErr;?></span>
+								<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">Male<br>
+								<span class="error"><?php echo $genderErr;?></span>
 							</td>
 						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>E-mail:</a>
+								<span class="error">*</span>
 							</td>
-							<td>
-								<input type="text" size="30" name="email" value="<?php echo $email;?>">
-								<span class="error">* <?php echo $emailErr;?></span>
+							<td align="center">
+								<input type="text" size="30" name="email" value="<?php echo $email;?>"><br>
+								<span class="error"><?php echo $emailErr;?></span>
 							</td>
 						</tr>
 						<tr>
 							<td valign="center" align="right">
 								<a>Phone (with country code):</a>
+								<span class="error">*</span>
 							</td>
-							<td>
-								<input type="text" size="30" name="phone" value="<?php echo $phone;?>">
-								<span class="error">* <?php echo $phoneErr;?></span>
+							<td align="center">
+								<input type="text" size="30" name="phone" value="<?php echo $phone;?>"><br>
+								<span class="error"><?php echo $phoneErr;?></span>
 							</td>
 						</tr>
 					</table>
 					<br>
-					<table style="width:800px">
+					<table style="width:600px">
 						<tr>
 							<td align="center">
 								<input type="checkbox" name="updateDB" value="1">I agree that the above is true!
@@ -316,6 +346,36 @@
 			data-callback="signInCallback">
 		</span>
 	</div>
+	
+	<!-- This manages the AJAX image uploading section -->
+	<script type="text/javascript" src="./jscripts/upclick-min.js"></script>
+	<script type="text/javascript">
+		var uploader = document.getElementById('uploader');
+		upclick({
+			element: uploader,
+			action: './pscripts/image_loader.php',
+			onstart:
+				function(filename) {
+					alert('Start upload: '+filename);
+				},
+			oncomplete:
+				function(response_data) {
+					console.log(response_data);
+					obj = JSON.parse(response_data);
+					console.log("Token status - \n" +
+							'\tSession message: ' + obj.session_msg 	+ "\n" +
+							'\tNew file       : ' + obj.newFile			+ "\n" +
+							'\tStatus         : ' + obj.status );
+					if( obj.status == '0' ){
+						console.log( "Error saving image\n" );
+						alert( "Sorry - there was an error loading your image." );
+					}
+					else{ 
+						document.getElementById("userImg").innerHTML = "<img src=\"./pscripts/image_loader.php\" height=\"150\">";
+					}
+				}
+		});
+	</script>
 </body>
 
 </html>

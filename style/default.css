@@ -687,10 +687,10 @@
 		color: rgba(255,255,255,.8);
 		text-align: left;
 		
-		background-image: url(https://lh4.googleusercontent.com/-6Zq7k-hqbWc/UybQJuLzN6I/AAAAAAAAALo/Jvu4DFkaoSw/s2000/kinnari_24.JPG);
+/*		background-image: url(https://lh4.googleusercontent.com/-6Zq7k-hqbWc/UybQJuLzN6I/AAAAAAAAALo/Jvu4DFkaoSw/s2000/kinnari_24.JPG);
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: cover;
+		background-size: cover;*/
 	}
 	
 	#userProfile a
@@ -700,7 +700,8 @@
 	
 	#userProfile .centerBox
 	{
+		float: center;
 		overflow: hidden;
 		margin: 0em auto;
-		width: 80%;
+		width: 600px;
 	}
