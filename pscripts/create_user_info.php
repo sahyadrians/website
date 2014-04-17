@@ -64,7 +64,7 @@ function createUserInfo() {
 	// Check for image - and show the image we currently have on file
 	$imgName = "../profile_pics/" . $gID;
 	if( file_exists ( $imgName ) )	{
-		$result = $result . '"image":  "' . $imgName	. '", ';
+		$result = $result . '"image":  "' . './pscripts/image_loader.php'	. '", ';
 	}
 	else {
 		$result = $result . '"image":  "' . $userInfo->{'image'}->{'url'}	. '&sz=150", ';
