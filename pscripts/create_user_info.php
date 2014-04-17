@@ -33,6 +33,8 @@ function createUserInfo() {
 		if ($row) 	{	$dataAccessFlag = 2;	}	// Read from database
 		else		{	$dataAccessFlag = 1;	}	// Can't find user - read from Google
 	}
+	mysqli_close($con);
+	
 	// Access all data from Google
 	if( $dataAccessFlag == 1 ) {
 		$emailAddress = extractEmailAddress( $userInfo->{'emails'} );
@@ -58,8 +60,17 @@ function createUserInfo() {
 		$result = $result . '"email":  "' . $row['email'] 	. '", ';
 		$result = $result . '"phone":  "' . $row['phone']	. '", ';
 	}
+	
+	// Check for image - and show the image we currently have on file
+	$imgName = "../profile_pics/" . $gID;
+	if( file_exists ( $imgName ) )	{
+		$result = $result . '"image":  "' . $imgName	. '", ';
+	}
+	else {
+		$result = $result . '"image":  "' . $userInfo->{'image'}->{'url'}	. '&sz=150", ';
+	}
 
-	$result = $result . '"time": "' . date('d-M-y h:m:s') . '" }';
+	$result = $result . '"time":    "' . date('d-M-y h:m:s') . '" }';
 
 	return json_decode($result);
 }
